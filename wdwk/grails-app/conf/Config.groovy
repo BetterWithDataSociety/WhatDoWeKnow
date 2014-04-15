@@ -135,3 +135,18 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/favicon.ico':                ['permitAll']
 ]
 
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+    '/oauth/authorize.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
+    '/oauth/token.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
+]
+
+
+// Add to the default list from spring security core
+grails.plugin.springsecurity.providerNames = [
+        'daoAuthenticationProvider',
+        'anonymousAuthenticationProvider',
+        'rememberMeAuthenticationProvider',
+        'clientCredentialsAuthenticationProvider'
+]
+
+
