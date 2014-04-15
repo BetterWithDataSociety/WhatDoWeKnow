@@ -127,8 +127,8 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.opendatash
 grails.plugin.springsecurity.authority.className = 'org.opendatasheffield.wdwk.WdwkRole'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
+	'/home':                          ['permitAll'],
+	'/home/**':                       ['permitAll'],
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
