@@ -2,10 +2,10 @@
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
-// grails.config.locations = [ "classpath:${appName}-config.properties",
-//                             "classpath:${appName}-config.groovy",
-//                             "file:${userHome}/.grails/${appName}-config.properties",
-//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+grails.config.locations = [ "classpath:${appName}-config.properties",
+                            "classpath:${appName}-config.groovy",
+                            "file:${userHome}/.grails/${appName}-config.properties",
+                            "file:${userHome}/.grails/${appName}-config.groovy"]
 
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
@@ -125,6 +125,8 @@ log4j = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.opendatasheffield.wdwk.WdwkUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.opendatasheffield.wdwk.WdwkUserWdwkRole'
 grails.plugin.springsecurity.authority.className = 'org.opendatasheffield.wdwk.WdwkRole'
+grails.plugin.springsecurity.securityConfigType = "Annotation"
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/home':                          ['permitAll'],
@@ -132,21 +134,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
+	'/**/favicon.ico':                ['permitAll'],
+        '/oauth/authorize.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
+        '/oauth/token.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
 ]
 
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-    '/oauth/authorize.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
-    '/oauth/token.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
-]
-
-
-// Add to the default list from spring security core
-grails.plugin.springsecurity.providerNames = [
-        'daoAuthenticationProvider',
-        'anonymousAuthenticationProvider',
-        'rememberMeAuthenticationProvider',
-        'clientCredentialsAuthenticationProvider'
-]
-
-
+grails.plugin.springsecurity.ui.password.minLength = 6
+grails.plugin.springsecurity.ui.password.maxLength = 64
+grails.plugin.springsecurity.ui.password.validationRegex = '^.*$'
