@@ -2,14 +2,16 @@
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
-grails.config.locations = [ "classpath:${appName}-config.properties",
-                            "classpath:${appName}-config.groovy",
-                            "file:${userHome}/.grails/${appName}-config.properties",
+grails.config.locations = [ // "classpath:${appName}-config.properties",
+                            // "classpath:${appName}-config.groovy",
+                            // "file:${userHome}/.grails/${appName}-config.properties",
                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
-// if (System.properties["${appName}.config.location"]) {
-//    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
-// }
+if (System.properties["${appName}.config.location"]) {
+   grails.config.locations << "file:" + System.properties["${appName}.config.location"]
+}
+
+println(grails.config.locations);
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 
@@ -135,8 +137,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll'],
-        '/oauth/authorize.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
-        '/oauth/token.dispatch':['IS_AUTHENTICATED_REMEMBERED'],
+        '/oauth/authorize.dispatch':      ['IS_AUTHENTICATED_REMEMBERED'],
+        '/oauth/token.dispatch':          ['IS_AUTHENTICATED_REMEMBERED'],
+        '/oauth/**':                      ['permitAll']
 ]
 
 grails.plugin.springsecurity.ui.password.minLength = 6
