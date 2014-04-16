@@ -50,6 +50,9 @@ class SpringSecurityOAuthController {
      * configuration setting.
      */
     def onSuccess = {
+
+        log.debug("onSuccess");
+
         // Validate the 'provider' URL. Any errors here are either misconfiguration
         // or web crawlers (or malicious users).
         if (!params.provider) {
@@ -83,10 +86,12 @@ class SpringSecurityOAuthController {
     }
 
     def onFailure = {
+        log.debug("onFailure");
         authenticateAndRedirect(null, defaultTargetUrl)
     }
 
     def askToLinkOrCreateAccount = {
+        log.debug("askToLinkOrCreateAccount");
         if (springSecurityService.loggedIn) {
             def currentUser = springSecurityService.currentUser
             OAuthToken oAuthToken = session[SPRING_SECURITY_OAUTH_TOKEN]
@@ -105,6 +110,7 @@ class SpringSecurityOAuthController {
      * that the user owns that account, and authenticates to verify before linking.
      */
     def linkAccount = { OAuthLinkAccountCommand command ->
+        log.debug("linkAccount");
         OAuthToken oAuthToken = session[SPRING_SECURITY_OAUTH_TOKEN]
         assert oAuthToken, "There is no auth token in the session!"
 
@@ -137,6 +143,7 @@ class SpringSecurityOAuthController {
     }
 
     def createAccount = { OAuthCreateAccountCommand command ->
+        log.debug("createAccount");
         OAuthToken oAuthToken = session[SPRING_SECURITY_OAUTH_TOKEN]
         assert oAuthToken, "There is no auth token in the session!"
 

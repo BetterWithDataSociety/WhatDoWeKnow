@@ -129,12 +129,11 @@ log4j = {
            'grails.app.service',
            'grails.app.services',
            'grails.app.domain',
-           // 'grails.app.tagLib',
            'grails.app.conf',
            'grails.app.jobs',
            'grails.app.conf.BootStrap',
-           'edu.umn.shibboleth.sp',
-           'com.k_int'
+           'com.k_int',
+           'wdwk'
 
 }
 
@@ -146,6 +145,8 @@ log4j = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.opendatasheffield.wdwk.WdwkUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.opendatasheffield.wdwk.WdwkUserWdwkRole'
 grails.plugin.springsecurity.authority.className = 'org.opendatasheffield.wdwk.WdwkRole'
+// Added by the Spring Security OAuth plugin:
+grails.plugin.springsecurity.oauth.domainClass = 'org.opendatasheffield.wdwk.WdwdOauthID'
 grails.plugin.springsecurity.securityConfigType = "Annotation"
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
@@ -156,14 +157,14 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll'],
+        '/oauthHandler/**':               ['permitAll'],
+        '/oauthHandler/':                 ['permitAll'],
         '/oauth/authorize.dispatch':      ['IS_AUTHENTICATED_REMEMBERED'],
         '/oauth/token.dispatch':          ['IS_AUTHENTICATED_REMEMBERED'],
-        '/oauth/**':                      ['permitAll']
+        '/oauth/**':                      ['permitAll'],
 ]
 
 grails.plugin.springsecurity.ui.password.minLength = 6
 grails.plugin.springsecurity.ui.password.maxLength = 64
 grails.plugin.springsecurity.ui.password.validationRegex = '^.*$'
 
-// Added by the Spring Security OAuth plugin:
-grails.plugin.springsecurity.oauth.domainClass = 'org.opendatasheffield.wdwk.WdwdOauthID'
