@@ -18,6 +18,10 @@ class WdwkUser {
 		password blank: false
 	}
 
+	static hasMany = [
+          oAuthIDs : WdwdOauthID
+        ]
+
 	static mapping = {
 		password column: '`password`'
 	}
