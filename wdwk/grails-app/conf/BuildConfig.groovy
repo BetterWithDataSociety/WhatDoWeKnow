@@ -71,6 +71,7 @@ grails.project.dependency.resolution = {
         compile ":spring-security-ui:1.0-RC1"
         compile ':spring-security-oauth:2.0.2'
 	compile ':spring-security-oauth-facebook:0.1'
+	compile ':spring-security-oauth-google:0.2'
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
