@@ -158,12 +158,12 @@ grails.plugin.springsecurity.oauth.registration.roleNames = ['ROLE_USER']
 grails.plugin.springsecurity.oauth.domainClass = 'org.opendatasheffield.wdwk.WdwdOauthID'
 grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = '/oauth/askToLinkOrCreateAccount'
 
-// grails.plugin.springsecurity.securityConfigType = "Annotation"
 grails.plugin.springsecurity.logout.postOnly = false
 
-grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
-// grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-grails.plugin.springsecurity.interceptUrlMap = [
+// grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+// grails.plugin.springsecurity.interceptUrlMap = [
+grails.plugin.springsecurity.securityConfigType = "Annotation"
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/home':                          ['permitAll'],
 	'/home/**':                       ['permitAll'],
@@ -174,8 +174,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
         '/login/**':                      ['permitAll'],
         '/logout/**':                     ['permitAll'],
         '/oauth/**':                      ['permitAll'],
-        '/oauth/facebook/success':        ['permitAll'],
-        '/oauth/facebook/failure':        ['permitAll']
+        '/springSecurityOAuth/**':        ['permitAll']
 ]
 
 grails.plugin.springsecurity.ui.password.minLength = 6
