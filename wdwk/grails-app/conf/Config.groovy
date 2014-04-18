@@ -129,11 +129,17 @@ log4j = {
            'grails.app.service',
            'grails.app.services',
            'grails.app.domain',
+           'grails.app.plugins',
            'grails.app.conf',
            'grails.app.jobs',
            'grails.app.conf.BootStrap',
            'com.k_int',
-           'wdwk'
+           'wdwk',
+           'grails.plugin.springsecurity.oauth',
+           'grails.app.conf.BootStrap',
+           'org.codehaus.groovy.grails.web',
+           'org.codehaus.groovy.grails.web.mapping',
+           'org.codehaus.groovy.grails.plugins'
 
 }
 
@@ -145,11 +151,19 @@ log4j = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.opendatasheffield.wdwk.WdwkUser'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.opendatasheffield.wdwk.WdwkUserWdwkRole'
 grails.plugin.springsecurity.authority.className = 'org.opendatasheffield.wdwk.WdwkRole'
+
 // Added by the Spring Security OAuth plugin:
+grails.plugin.springsecurity.oauth.active = true
+grails.plugin.springsecurity.oauth.registration.roleNames = ['ROLE_USER']
 grails.plugin.springsecurity.oauth.domainClass = 'org.opendatasheffield.wdwk.WdwdOauthID'
-grails.plugin.springsecurity.securityConfigType = "Annotation"
+grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = '/oauth/askToLinkOrCreateAccount'
+
+// grails.plugin.springsecurity.securityConfigType = "Annotation"
 grails.plugin.springsecurity.logout.postOnly = false
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+// grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+grails.plugin.springsecurity.interceptUrlMap = [
 	'/':                              ['permitAll'],
 	'/home':                          ['permitAll'],
 	'/home/**':                       ['permitAll'],
@@ -157,11 +171,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll'],
-        '/oauthHandler/**':               ['permitAll'],
-        '/oauthHandler/':                 ['permitAll'],
-        '/oauth/authorize.dispatch':      ['IS_AUTHENTICATED_REMEMBERED'],
-        '/oauth/token.dispatch':          ['IS_AUTHENTICATED_REMEMBERED'],
+        '/login/**':                      ['permitAll'],
+        '/logout/**':                     ['permitAll'],
         '/oauth/**':                      ['permitAll'],
+        '/oauth/facebook/success':        ['permitAll'],
+        '/oauth/facebook/failure':        ['permitAll']
 ]
 
 grails.plugin.springsecurity.ui.password.minLength = 6

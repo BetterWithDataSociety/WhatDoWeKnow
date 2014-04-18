@@ -2,5 +2,7 @@ package wdwk
 
 class SearchController {
 
-    def index() { }
+  def index() { 
+  }
+
 }

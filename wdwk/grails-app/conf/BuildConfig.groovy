@@ -45,6 +45,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
         mavenRepo "http://repo.spring.io/milestone/"
+        mavenRepo "https://raw.github.com/fernandezpablo85/scribe-java/mvn-repo"
 
     }
 
@@ -69,9 +70,12 @@ grails.project.dependency.resolution = {
         runtime ":resources:1.2.7"
         compile ":spring-security-core:2.0-RC2"
         compile ":spring-security-ui:1.0-RC1"
-        compile ':spring-security-oauth:2.0.2'
+        // compile ':spring-security-oauth:2.0.2'
+        compile ':spring-security-oauth:2.1.0-RC2.1'
 	compile ':spring-security-oauth-facebook:0.1'
 	compile ':spring-security-oauth-google:0.2'
+
+        // compile ":httplogger:1.1"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"

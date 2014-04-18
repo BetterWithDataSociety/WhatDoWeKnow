@@ -3,3 +3,12 @@ https://github.com/cazacugmihai/grails-spring-security-oauth
 https://github.com/manishkbharti/grailsOauthPluginDemo
 https://github.com/pledbrook/talk-submissions
 https://github.com/spring-projects/spring-security-oauth
+
+
+Download this repo
+https://github.com/enr/grails-spring-security-oauth **
+
+Experiment using
+
+grails package-plugin
+grails maven-install
