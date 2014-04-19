@@ -1,42 +1,6 @@
 <head>
     <meta name='layout' content='main'/>
-    <title>Create or Link Account</title>
-    <style type="text/css">
-    fieldset {
-        border: 1px solid green;
-        padding: 1em;
-        font: 80%/1 sans-serif;
-    }
-
-    fieldset legend {
-        padding: 0.2em 0.5em;
-        border: 1px solid green;
-        color: green;
-        font-weight: bold;
-        font-size: 90%;
-        text-align: right;
-    }
-
-    fieldset label {
-        float: left;
-        width: 25%;
-        margin-top: 5px;
-        margin-right: 0.5em;
-        padding-top: 0.2em;
-        text-align: right;
-        font-weight: bold;
-    }
-
-    fieldset input[type="submit"] {
-        float: right;
-        background: #F0F0F0;
-        cursor: pointer;
-    }
-
-    fieldset br {
-        margin-top: 10px;
-    }
-    </style>
+    <title>WDWK - Create or Link Account</title>
 </head>
 
 <body>
@@ -47,6 +11,7 @@
     </g:if>
 
     <h4><g:message code="springSecurity.oauth.registration.link.not.exists" default="No user was found with this account." args="[session.springSecurityOAuthToken.providerName]"/></h4>
+
     <br/>
 
     <g:hasErrors bean="${createAccountCommand}">
