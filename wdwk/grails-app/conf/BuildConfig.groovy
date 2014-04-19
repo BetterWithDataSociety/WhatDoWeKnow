@@ -73,6 +73,17 @@ grails.project.dependency.resolution = {
         compile ':spring-security-oauth:2.0.2'
 	compile ':spring-security-oauth-facebook:0.1'
 	compile ':spring-security-oauth-google:0.2'
+        compile ":twitter-bootstrap:3.1.1"
+        compile ":rest:0.8"
+
+
+        runtime ":jquery-ui:1.10.3"
+        runtime ":famfamfam:1.0.1"
+        runtime ':gsp-resources:0.4.4'
+        compile ':mail:1.0.1', {
+           excludes 'spring-test'
+        }
+        compile ":executor:0.3"
 
         // compile ":httplogger:1.1"
 
