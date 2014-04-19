@@ -368,15 +368,12 @@ class OAuthCreateAccountCommand {
                 }
             }
         }
-        password1 blank: false, minSize: 8, maxSize: 64, validator: { password1, command ->
+        password1 blank: false, minSize: 6, maxSize: 64, validator: { password1, command ->
             if (command.username && command.username.equals(password1)) {
                 return 'OAuthCreateAccountCommand.password.error.username'
             }
 
-            if (password1 && password1.length() >= 8 && password1.length() <= 64 &&
-                    (!password1.matches('^.*\\p{Alpha}.*$') ||
-                     !password1.matches('^.*\\p{Digit}.*$') ||
-                     !password1.matches('^.*[!@#$%^&].*$'))) {
+            if (password1 && password1.length() >= 8 && password1.length() <= 64 && (!password1.matches('^.*$'))) {
                 return 'OAuthCreateAccountCommand.password.error.strength'
             }
         }

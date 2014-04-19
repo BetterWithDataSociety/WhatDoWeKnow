@@ -181,3 +181,6 @@ grails.plugin.springsecurity.ui.password.minLength = 6
 grails.plugin.springsecurity.ui.password.maxLength = 64
 grails.plugin.springsecurity.ui.password.validationRegex = '^.*$'
 
+grails.plugin.springsecurity.oauth.password.minLength = 6
+grails.plugin.springsecurity.oauth.password.maxLength = 64
+grails.plugin.springsecurity.oauth.password.validationRegex = '^.$'
