@@ -12,3 +12,16 @@ Experiment using
 
 grails package-plugin
 grails maven-install
+
+
+
+
+mysql> create database wdwk default charset utf8 default collate utf8_bin;
+mysql> grant all on wdwk.* to 'wdwk'@'localhost';
+mysql> grant all on wdwk.* to 'wdwk'@'localhost.localdomain';
+mysql> grant all on wdwk.* to 'wdwk'@'%';
+mysql> create database auth default charset utf8 default collate utf8_bin;
+mysql> grant all on auth.* to 'wdwk'@'localhost';
+mysql> grant all on auth.* to 'wdwk'@'localhost.localdomain';
+mysql> grant all on auth.* to 'wdwk'@'%';
+

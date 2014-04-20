@@ -2,45 +2,49 @@ package org.opendatasheffield.wdwk
 
 class WdwkUser {
 
-	transient springSecurityService
+  transient springSecurityService
 
-	String username
-	String password
-	boolean enabled = true
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+  String username
+  String password
+  boolean enabled = true
+  boolean accountExpired
+  boolean accountLocked
+  boolean passwordExpired
 
-	static transients = ['springSecurityService']
+  static transients = ['springSecurityService']
 
-	static constraints = {
-		username blank: false, unique: true
-		password blank: false
-	}
+  static constraints = {
+    username blank: false, unique: true
+    password blank: false
+  }
 
-	static hasMany = [
-          oAuthIDs : WdwdOauthID
-        ]
+  // static mapping = {
+  //   table name:, schema:'', catalog:''
+  // }
 
-	static mapping = {
-		password column: '`password`'
-	}
+  static hasMany = [
+    oAuthIDs : WdwdOauthID
+  ]
 
-	Set<WdwkRole> getAuthorities() {
-		WdwkUserWdwkRole.findAllByWdwkUser(this).collect { it.wdwkRole } as Set
-	}
+  static mapping = {
+    password column: '`password`'
+  }
 
-	def beforeInsert() {
-		encodePassword()
-	}
+  Set<WdwkRole> getAuthorities() {
+    WdwkUserWdwkRole.findAllByWdwkUser(this).collect { it.wdwkRole } as Set
+  }
 
-	def beforeUpdate() {
-		if (isDirty('password')) {
-			encodePassword()
-		}
-	}
+  def beforeInsert() {
+    encodePassword()
+  }
 
-	protected void encodePassword() {
-		password = springSecurityService.encodePassword(password)
-	}
+  def beforeUpdate() {
+    if (isDirty('password')) {
+      encodePassword()
+    }
+  }
+
+  protected void encodePassword() {
+    password = springSecurityService.encodePassword(password)
+  }
 }
