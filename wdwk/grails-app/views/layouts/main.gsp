@@ -55,6 +55,10 @@
                 </li>
               </sec:ifAnyGranted>
 
+              <li>
+                <g:link controller="ask" action="index">Ask for Data!</g:link>
+              </li>
+
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Questions</a>
                 <ul class="dropdown-menu">
