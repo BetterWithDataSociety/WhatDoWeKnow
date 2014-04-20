@@ -84,7 +84,7 @@ grails.project.dependency.resolution = {
            excludes 'spring-test'
         }
         compile ":executor:0.3"
-        compile ":authmodel:0.1"
+        compile ":authmodel:0.2"
 
         // compile ":httplogger:1.1"
 

@@ -1,4 +1,4 @@
-import me.ianibbo.*
+import me.ianibbo.common.*
 
 class BootStrap {
 
