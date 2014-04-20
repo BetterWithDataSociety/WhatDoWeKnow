@@ -133,13 +133,12 @@ log4j = {
            'grails.app.conf',
            'grails.app.jobs',
            'grails.app.conf.BootStrap',
-           'com.k_int',
            'wdwk',
-           'grails.plugin.springsecurity.oauth',
-           'grails.app.conf.BootStrap',
-           'org.codehaus.groovy.grails.web',
-           'org.codehaus.groovy.grails.web.mapping',
-           'org.codehaus.groovy.grails.plugins'
+//            'grails.plugin.springsecurity.oauth',
+//            'org.codehaus.groovy.grails.web',
+//            'org.codehaus.groovy.grails.web.mapping',
+//            'org.codehaus.groovy.grails.plugins'
+           'grails.app.conf.BootStrap'
 
 }
 
