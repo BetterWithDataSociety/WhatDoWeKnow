@@ -23,10 +23,7 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.savedrequest.DefaultSavedRequest
 
-import org.opendatasheffield.wdwk.WdwkUser
-import org.opendatasheffield.wdwk.WdwkRole
-import org.opendatasheffield.wdwk.WdwkUserWdwkRole
-import org.opendatasheffield.wdwk.WdwdOauthID
+import me.ianibbo.common.*
 
 /**
  * Simple helper controller for handling OAuth authentication and integrating it
@@ -115,8 +112,8 @@ class SpringSecurityOAuthController {
         assert oAuthToken, "There is no auth token in the session!"
 
         if (request.post) {
-            boolean linked = command.validate() && WdwkUser.withTransaction { status ->
-                WdwkUser user = WdwkUser.findByUsernameAndPassword(
+            boolean linked = command.validate() && AuthCommonUser.withTransaction { status ->
+                AuthCommonUser user = AuthCommonUser.findByUsernameAndPassword(
                         command.username, springSecurityService.encodePassword(command.password))
                 if (user) {
                     user.addToOAuthIDs(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: user)
@@ -151,8 +148,8 @@ class SpringSecurityOAuthController {
             if (!springSecurityService.loggedIn) {
                 def config = SpringSecurityUtils.securityConfig
 
-                boolean created = command.validate() && WdwkUser.withTransaction { status ->
-                    WdwkUser user = new WdwkUser(username: command.username, password: command.password1, enabled: true)
+                boolean created = command.validate() && AuthCommonUser.withTransaction { status ->
+                    AuthCommonUser user = new AuthCommonUser(username: command.username, password: command.password1, enabled: true)
                     user.addToOAuthIDs(provider: oAuthToken.providerName, accessToken: oAuthToken.socialId, user: user)
 
                     // updateUser(user, oAuthToken)
@@ -163,7 +160,7 @@ class SpringSecurityOAuthController {
                     }
 
                     for (roleName in config.oauth.registration.roleNames) {
-                        WdwkUserWdwkRole.create user, WdwkRole.findByAuthority(roleName)
+                        AuthCommonUserAuthCommonRole.create user, AuthCommonRole.findByAuthority(roleName)
                     }
 
                     oAuthToken = updateOAuthToken(oAuthToken, user)
@@ -191,7 +188,7 @@ class SpringSecurityOAuthController {
         def providerService = grailsApplication.mainContext.getBean("${providerName}SpringSecurityOAuthService")
         OAuthToken oAuthToken = providerService.createAuthToken(scribeToken)
 
-        def oAuthID = WdwdOauthID.findByProviderAndAccessToken(oAuthToken.providerName, oAuthToken.socialId)
+        def oAuthID = AuthCommonOAuthId.findByProviderAndAccessToken(oAuthToken.providerName, oAuthToken.socialId)
         if (oAuthID) {
             updateOAuthToken(oAuthToken, oAuthID.user)
         }
@@ -199,7 +196,7 @@ class SpringSecurityOAuthController {
         return oAuthToken
     }
 
-    protected OAuthToken updateOAuthToken(OAuthToken oAuthToken, WdwkUser user) {
+    protected OAuthToken updateOAuthToken(OAuthToken oAuthToken, AuthCommonUser user) {
         def conf = SpringSecurityUtils.securityConfig
 
         // user
@@ -234,7 +231,7 @@ class SpringSecurityOAuthController {
     }
 
 /*
-    private def updateUser(WdwkUser user, OAuthToken oAuthToken) {
+    private def updateUser(AuthCommonUser user, OAuthToken oAuthToken) {
         if (!user.validate()) {
             return
         }
@@ -362,8 +359,8 @@ class OAuthCreateAccountCommand {
 
     static constraints = {
         username blank: false, validator: { String username, command ->
-            WdwkUser.withNewSession { session ->
-                if (username && WdwkUser.countByUsername(username)) {
+            AuthCommonUser.withNewSession { session ->
+                if (username && AuthCommonUser.countByUsername(username)) {
                     return 'OAuthCreateAccountCommand.username.error.unique'
                 }
             }

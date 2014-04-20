@@ -1,4 +1,4 @@
-import org.opendatasheffield.wdwk.*;
+import me.ianibbo.*
 
 class BootStrap {
 
@@ -7,16 +7,16 @@ class BootStrap {
       log.debug("Init");
 
       // Global System Roles
-      def contributorRole = WdwkRole.findByAuthority('ROLE_CONTRIBUTOR') ?: new WdwkRole(authority: 'ROLE_CONTRIBUTOR', roleType:'global').save(failOnError: true)
-      def userRole = WdwkRole.findByAuthority('ROLE_USER') ?: new WdwkRole(authority: 'ROLE_USER', roleType:'global').save(failOnError: true)
-      def editorRole = WdwkRole.findByAuthority('ROLE_EDITOR') ?: new WdwkRole(authority: 'ROLE_EDITOR', roleType:'global').save(failOnError: true)
-      def adminRole = WdwkRole.findByAuthority('ROLE_ADMIN') ?: new WdwkRole(authority: 'ROLE_ADMIN', roleType:'global').save(failOnError: true)
+      def contributorRole = AuthCommonRole.findByAuthority('ROLE_CONTRIBUTOR') ?: new AuthCommonRole(authority: 'ROLE_CONTRIBUTOR', roleType:'global').save(failOnError: true)
+      def userRole = AuthCommonRole.findByAuthority('ROLE_USER') ?: new AuthCommonRole(authority: 'ROLE_USER', roleType:'global').save(failOnError: true)
+      def editorRole = AuthCommonRole.findByAuthority('ROLE_EDITOR') ?: new AuthCommonRole(authority: 'ROLE_EDITOR', roleType:'global').save(failOnError: true)
+      def adminRole = AuthCommonRole.findByAuthority('ROLE_ADMIN') ?: new AuthCommonRole(authority: 'ROLE_ADMIN', roleType:'global').save(failOnError: true)
 
       log.debug("Create admin user...");
-      def adminUser = WdwkUser.findByUsername('admin')
+      def adminUser = AuthCommonUser.findByUsername('admin')
       if ( ! adminUser ) {
         log.error("No admin user found, create");
-        adminUser = new WdwkUser(
+        adminUser = new AuthCommonUser(
             username: 'admin',
             password: 'admin',
             display: 'Admin',
@@ -25,11 +25,11 @@ class BootStrap {
       }
 
       if (!adminUser.authorities.contains(adminRole)) {
-        WdwkUserWdwkRole.create adminUser, adminRole
+        AuthCommonUserAuthCommonRole.create adminUser, adminRole
       }
 
       if (!adminUser.authorities.contains(userRole)) {
-        WdwkUserWdwkRole.create adminUser, userRole
+        AuthCommonUserAuthCommonRole.create adminUser, userRole
       }
 
 
