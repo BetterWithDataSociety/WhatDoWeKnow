@@ -148,14 +148,14 @@ log4j = {
 
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.opendatasheffield.wdwk.WdwkUser'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.opendatasheffield.wdwk.WdwkUserWdwkRole'
-grails.plugin.springsecurity.authority.className = 'org.opendatasheffield.wdwk.WdwkRole'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'me.ianibbo.common.AuthCommonUser'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'me.ianibbo.common.AuthCommonUserAuthCommonRole'
+grails.plugin.springsecurity.authority.className = 'me.ianibbo.common.AuthCommonRole'
 
 // Added by the Spring Security OAuth plugin:
 grails.plugin.springsecurity.oauth.active = true
 grails.plugin.springsecurity.oauth.registration.roleNames = ['ROLE_USER']
-grails.plugin.springsecurity.oauth.domainClass = 'org.opendatasheffield.wdwk.WdwdOauthID'
+grails.plugin.springsecurity.oauth.domainClass = 'me.ianibbo.common.AuthCommonOAuthId'
 grails.plugin.springsecurity.oauth.registration.askToLinkOrCreateAccountUri = '/oauth/askToLinkOrCreateAccount'
 
 grails.plugin.springsecurity.logout.postOnly = false
