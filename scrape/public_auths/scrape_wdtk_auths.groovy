@@ -15,31 +15,41 @@ import static groovy.json.JsonOutput.*
 
 def the_base_url = "https://www.whatdotheyknow.com"
 
+def result = []
+
 // HYS is returning CP 1252 pages - need to fix this somehow
 // groovyx.net.http.ParserRegistry.setDefaultCharset('cp1252')
 
 def letters = 'a'..'z'
 letters.each { letter ->
-  process("${the_base_url}/body/list/${letter}", the_base_url);
+  process("${the_base_url}/body/list/${letter}", the_base_url, result);
 }
 
-def process(url,base) {
+try{
+  def out= new ObjectOutputStream(new FileOutputStream('wdtk_authorities.obj'))
+  out.writeObject(result)
+  out.close()
+}finally{}
+
+
+
+def process(url, base, result_list) {
   def nextPage=url
 
   while( nextPage != null ) {
     println("\n\n\n${nextPage}\n\n\n");
-    nextPage = processPage(nextPage,base);
+    nextPage = processPage(nextPage,base, result_list);
   }
 }
 
-def processPage(url, base) {
+def processPage(url, base, result_list) {
   println("Processing ${url}");
   def result = null;
 
   def response_page = new XmlParser( new org.cyberneko.html.parsers.SAXParser() ).parse(url)
   def orgs_on_this_page = response_page.depthFirst().DIV.findAll { it.'@class'=='body_listing' }
   orgs_on_this_page.each { org ->
-    processOrg(org.SPAN.A.text(),"${base}${(org.SPAN.A.@href)[0]}")
+    processOrg(org.SPAN.A.text(),"${base}${(org.SPAN.A.@href)[0]}", result_list)
   }
 
   def nextPageLink = response_page.depthFirst().A.findAll { it.'@class' == 'next_page' }
@@ -53,7 +63,7 @@ def processPage(url, base) {
   result
 }
 
-def processOrg(name, url) {
+def processOrg(name, url, result_list) {
   // println("Processing ${name}, ${url}");
   def response_page = new XmlParser( new org.cyberneko.html.parsers.SAXParser() ).parse(url)
   def types = response_page.depthFirst().P.findAll { it.'@class'=='subtitle' }
@@ -74,5 +84,5 @@ def processOrg(name, url) {
     publication_scheme: publication_scheme
   ]
 
-  // println(result)
+  result_list.add(result)
 }
