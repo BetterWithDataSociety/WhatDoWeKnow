@@ -4,7 +4,7 @@ import grails.converters.*
 import grails.plugin.springsecurity.annotation.Secured
 import org.codehaus.groovy.grails.commons.GrailsClassUtils
 
-class HomeController {
+class AskController {
 
   def springSecurityService
 

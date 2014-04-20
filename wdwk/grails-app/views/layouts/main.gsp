@@ -100,7 +100,9 @@
       </div>
     </div>
 
+    <div class="main">
     <g:layoutBody/>
+    </div>
 
 
     <g:if test="${grailsApplication.config.analytics?.code!=null}">
