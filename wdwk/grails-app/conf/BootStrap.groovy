@@ -1,4 +1,5 @@
 import me.ianibbo.common.*
+import org.opendatasheffield.wdwk.*
 
 class BootStrap {
 
@@ -32,6 +33,7 @@ class BootStrap {
         AuthCommonUserAuthCommonRole.create adminUser, userRole
       }
 
+      // def new_data_request = new DataRequest(requester:adminUser, requestText:'This is a test').save(flush:true);
 
     }
 
