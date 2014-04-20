@@ -42,7 +42,7 @@
 		</tr>
 	</table>
 
-        <oauth:connect provider="facebook" id="facebook-connect-link">Connect to Facebook</oauth:connect>
+        <oauth:connect provider="facebook" id="facebook-connect-link">Login via Facebook</oauth:connect>
 
 	</div>
 	</form>
