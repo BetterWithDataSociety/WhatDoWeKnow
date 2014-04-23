@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <g:link controller="home" action="index" class="navbar-brand">Open Local Information Directory</g:link>
+          <g:link controller="home" action="index" class="navbar-brand">What Do We Know</g:link>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
