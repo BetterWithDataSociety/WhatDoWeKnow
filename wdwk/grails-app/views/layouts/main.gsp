@@ -33,8 +33,8 @@
           <g:link controller="home" action="index" class="navbar-brand">Open Local Information Directory</g:link>
         </div>
         <div class="collapse navbar-collapse">
-          <sec:ifLoggedIn>
-            <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav">
+            <sec:ifLoggedIn>
               <sec:ifAnyGranted roles="ROLE_ADMIN">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Menu</a>
@@ -55,10 +55,6 @@
                 </li>
               </sec:ifAnyGranted>
 
-              <li>
-                <g:link controller="ask" action="index">Ask for Data!</g:link>
-              </li>
-
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Questions</a>
                 <ul class="dropdown-menu">
@@ -76,8 +72,12 @@
  
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
-            </ul>
-          </sec:ifLoggedIn>
+            </sec:ifLoggedIn>
+            <li>
+                <g:link controller="ask" action="index">Ask for Data!</g:link>
+            </li>
+          </ul>
+
 
           <ul class="nav navbar-nav pull-right">
             <sec:ifLoggedIn>
